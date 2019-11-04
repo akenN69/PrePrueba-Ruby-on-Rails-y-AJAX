@@ -1,0 +1,31 @@
+$(document).on('ready turbolinks:load', function(){
+    
+    //$('.show_post').on('click', function(e){
+    //e.preventDefault();
+    //    $('#myModal').modal()
+
+    //});
+      
+    $("input[name='q']").keyup(function(){
+    var q = $(this).val()
+    //Filtrar  
+        if(q.length > 2){
+            $.ajax({
+                type: "get",
+                url: "/posts",
+                data: {q: q },
+                dataType: "script"
+            });
+        };
+    //Liberar (dejar salir)
+        if(q.length == 0){
+        var q = $("input[name='q']").val()
+            $.ajax({
+                type: "get",
+                url: "/posts",
+                dataType: "script"
+            });
+        };
+    });
+});
+
